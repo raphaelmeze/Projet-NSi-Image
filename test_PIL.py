@@ -1,41 +1,50 @@
 
-# Projet 2 - Manipulation d'images
-# ===
-# 
-# Exemples d'utilisation de la librairie PIL
 
 from PIL import Image
 
-# Chargement et affichage d'une image
+from random import shuffle
 
 image = Image.open('poisson.jpg')
-image.show()
 
-# Affichage de la taille de l'image et de la valeur du pixel au centre
+def niveaux_de_gris(image): 
+    for x in range (image.width): 
+        for y in range (image.height): 
+            rouge=image.getpixel((x,y))[0] 
+            bleu=image.getpixel((x,y))[1] 
+            vert=image.getpixel((x,y))[2] 
+            m=(rouge+bleu+vert)//3 
+            image.putpixel((x,y),(m,m,m)) 
+    image.show() 
 
-print('taille =', image.width, image.height)
+def contours(image,seuil): 
+    niveaux_de_gris(image) 
+    for x in range (image.width): 
+        for y in range (image.height): 
+            if x==0: 
+                couleur1=image.getpixel((x,y))[0] 
+                couleur2=image.getpixel((x+1,y))[0] 
+                difference=couleur1-couleur2 
+                if difference>seuil: 
+                    image.putpixel((x,y),(255,255,255)) 
+                else: 
+                    image.putpixel((x,y),(0,0,0)) 
+            else: 
+                couleur1=image.getpixel((x,y))[0] 
+                couleur2=image.getpixel((x-1,y))[0] 
+                difference=couleur1-couleur2 
+                if difference>seuil: 
+                    image.putpixel((x,y),(255,255,255)) 
+                else: 
+                    image.putpixel((x,y),(0,0,0)) 
+    image.show()
 
-largeur, hauteur = image.width, image.height
-cx = int(largeur/2)
-cy = int(hauteur/2)
-
-p = image.getpixel((cx, cy))
-print('valeur RGB du pixel au centre =', p)
-
-# Extraction et affichage d'une sous-image de 100x100 pixels au centre
-
-centre = image.crop((cx-50, cy-50, cx+50, cy+50))
-centre.show()
-
-# Collage de la sous-image dans le coin supérieur gauche de l'image de départ
-
-image.paste(centre,(0, 0, 100, 100))
-image.show()
-
-# Affectation des pixels au centre de l'image
-
-for i in range(-50, 50):
-    for j in range(-50, 50):
-        image.putpixel((int(largeur/2) + i, int(hauteur/2) + j), (0, 0, 255))
-
-image.show()
+def mosaique(image):
+    mosaique=[]
+    largeur, longueur = image.width, image.height
+    for i in range (16):
+        mosaique+=[image.crop(((i//4)*(largeur//4),(i%4)*(longueur//4),(i//4)*(largeur//4)+(largeur//4),(i%4)*(longueur//4)+(longueur//4)))]
+    shuffle(mosaique)
+    for i in range(16):
+        image.paste(mosaique[i],((i//4)*(largeur//4),(i%4)*(longueur//4),(i//4)*(largeur//4)+(largeur//4),(i%4)*(longueur//4)+(longueur//4)))
+    image.show()
+    
