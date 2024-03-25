@@ -1,7 +1,7 @@
 # Projet-NSi-Image
 Ceci est un projet de traitement d'images avec python réalisé en groupe de trois
 
-J'ai crée les fonctions contours et mosaique je vous laisse faire les votre mais regarder ce que j'ai fait pour comprendre comment marche la bibliothèque
+J'ai créé les fonctions contours et mosaique je vous laisse faire les votres mais regardez ce que j'ai fait pour comprendre comment marche la bibliothèque
 image = Image.open('poisson.jpg')
 
 from PIL import Image
@@ -51,4 +51,10 @@ def mosaique(image):
     for i in range(16):
         image.paste(mosaique[i],((i//4)*(largeur//4),(i%4)*(longueur//4),(i//4)*(largeur//4)+(largeur//4),(i%4)*(longueur//4)+(longueur//4)))
     image.show()
-    
+
+def negatif(image):
+    for x in range (image.width): 
+        for y in range (image.height): 
+            r, v, b=image.getpixel((x,y))
+            image.putpixel((x,y),(255-r,255-v,255-b)) 
+    image.show() 
