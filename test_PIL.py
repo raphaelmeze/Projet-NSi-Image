@@ -47,4 +47,16 @@ def mosaique(image):
     for i in range(16):
         image.paste(mosaique[i],((i//4)*(largeur//4),(i%4)*(longueur//4),(i//4)*(largeur//4)+(largeur//4),(i%4)*(longueur//4)+(longueur//4)))
     image.show()
-    
+
+def noir_et_blanc(image,seuil):
+    for x in range (image.width):
+        for y in range(image.height):
+            rouge=image.getpixel((x,y))[0]
+            bleu=image.getpixel((x,y))[1] 
+            vert=image.getpixel((x,y))[2] 
+            moyenne=(rouge+bleu+vert)//3
+            if moyenne > seuil:
+                image.putpixel((x,y),(255,255,255))
+            else:
+                image.putpixel((x,y),(0,0,0))
+    image.show()
