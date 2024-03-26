@@ -78,16 +78,17 @@ def negatif(image):
     -------
     None.
 """
-    for x in range (image.width): 
+    img2=image.copy()
+    for x in range (img2.width): 
     #ça regarde la largeur de l'image
-        for y in range (image.height): 
+        for y in range (img2.height): 
         #ça regarde la longueur de l'image
-            r, v, b=image.getpixel((x,y))
+            r, v, b=img2.getpixel((x,y))
             #ça prend toutes les couleurs de tous les pixels de l'image
-            image.putpixel((x,y),(255-r,255-v,255-b)) 
+            img2.putpixel((x,y),(255-r,255-v,255-b)) 
             #ça remplace les pixels par leur pixels négatifs en rajoutant 255 à chaque couleur de chaque pixel
-    image.show() 
-    #ça montre l'image modifiée
+    return img2
+    #ça retourne l'image modifiée
 
 def premier_plan (image,):
     img2=image.copy()
