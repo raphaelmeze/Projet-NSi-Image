@@ -64,17 +64,18 @@ def mosaique(image):
     image.show()
 
 def noir_et_blanc(image,seuil):
-    for x in range (image.width):
-        for y in range(image.height):
-            rouge=image.getpixel((x,y))[0]
-            bleu=image.getpixel((x,y))[1] 
-            vert=image.getpixel((x,y))[2] 
+    image_nb=image.copy()
+    for x in range (image_nb.width):
+        for y in range(image_nb.height):
+            rouge=image_nb.getpixel((x,y))[0]
+            bleu=image_nb.getpixel((x,y))[1] 
+            vert=image_nb.getpixel((x,y))[2] 
             moyenne=(rouge+bleu+vert)//3
             if moyenne > seuil:
-                image.putpixel((x,y),(255,255,255))
+                image_nb.putpixel((x,y),(255,255,255))
             else:
-                image.putpixel((x,y),(0,0,0))
-    image.show()
+                image_nb.putpixel((x,y),(0,0,0))
+    image_nb.show()
 
 def negatif(image):
     """negatif
