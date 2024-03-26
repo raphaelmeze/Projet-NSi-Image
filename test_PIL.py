@@ -52,18 +52,43 @@ def mosaique(image):
     image.show()
 
 def noir_et_blanc(image,seuil):
+    """noir_et_blanc
+    
+
+    Parameters
+    ----------
+    image : list
+        image
+
+    Returns
+    -------
+    None.
+"""
     image_nb=image.copy()
+    #ça copie l'image dans une variable image_nb
     for x in range (image_nb.width):
+    #ça regarde la largeur de l'image
         for y in range(image_nb.height):
+        #ça regarde la longueur de l'image
             rouge=image_nb.getpixel((x,y))[0]
+            #ça prend la valeur de la couleur rouge de chaque pixel et la met dans la variable rouge
             bleu=image_nb.getpixel((x,y))[1] 
+            #ça prend la valeur de la couleur bleue de chaque pixel et la met dans la variable bleu
             vert=image_nb.getpixel((x,y))[2] 
+            #ça prend la valeur de la couleur verte de chaque pixel et la met dans la variable vert
             moyenne=(rouge+bleu+vert)//3
+            #ça fait la moyenne de toutes les couleurs de chaque pixel
             if moyenne > seuil:
+            #si la moyenne de toutes les couleurs de chaque pixel est supérieure au seuil rentré au début
                 image_nb.putpixel((x,y),(255,255,255))
+                #ça remplace les valeurs des couleurs des pixels par les valeurs des couleurs des pixels du blanc
             else:
+            #sinon si la moyenne de toutes les couleurs de chaque pixel est inférieure au seuil rentré au début
                 image_nb.putpixel((x,y),(0,0,0))
+                #ça remplace les valeurs des couleurs des pixels par les valeurs des couleurs des pixels du noir
     image_nb.show()
+    #ça montre l'image modifiée
+
 
 def negatif(image):
     """negatif
