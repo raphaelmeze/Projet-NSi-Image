@@ -77,11 +77,29 @@ def noir_et_blanc(image,seuil):
     image.show()
 
 def negatif(image):
+    """negatif
+    
+
+    Parameters
+    ----------
+    image : list
+        image
+
+    Returns
+    -------
+    None.
+
+    """
     for x in range (image.width): 
+    #ça regarde la largeur de l'image
         for y in range (image.height): 
+        #ça regarde la longueur de l'image
             r, v, b=image.getpixel((x,y))
+            #ça prend toutes les couleurs de tous les pixels de l'image
             image.putpixel((x,y),(255-r,255-v,255-b)) 
+            #ça remplace les pixels par leur pixels négatifs en rajoutant 255 à chaque couleur de chaque pixel
     image.show() 
+    #ça montre l'image modifiée
 def premier_plan (image,):
     r=int(input("Quelle valeur de rouge voulez-vous gardez ?"))
     b=int(input("Quelle valeur de bleu voulez-vous gardez ?"))
