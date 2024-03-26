@@ -33,12 +33,12 @@ def niveaux_de_gris(image):
     image.show() 
 def contours(image,seuil): 
     niveaux_de_gris(image) 
-    for x in range (image.width): 
+    for x in range (image.width-1): 
         for y in range (image.height): 
             if x==0: 
                 couleur1=image.getpixel((x,y))[0] 
                 couleur2=image.getpixel((x+1,y))[0] 
-                difference=couleur1-couleur2 
+                difference=abs(couleur1-couleur2)
                 if difference>seuil: 
                     image.putpixel((x,y),(255,255,255)) 
                 else: 
@@ -46,7 +46,7 @@ def contours(image,seuil):
             else: 
                 couleur1=image.getpixel((x,y))[0] 
                 couleur2=image.getpixel((x-1,y))[0] 
-                difference=couleur1-couleur2 
+                difference=abs(couleur1-couleur2)
                 if difference>seuil: 
                     image.putpixel((x,y),(255,255,255)) 
                 else: 
