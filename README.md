@@ -58,3 +58,14 @@ def negatif(image):
             r, v, b=image.getpixel((x,y))
             image.putpixel((x,y),(255-r,255-v,255-b)) 
     image.show() 
+def premier_plan (image):
+    largeur, longueur = image.width, image.height
+    for x in range (image.width): 
+        for y in range (image.height): 
+            if not((x>largeur//3 and x<largeur*2//3) and (y>longueur//3 and y<longueur*2//3)):
+                rouge=image.getpixel((x,y))[0] 
+                bleu=image.getpixel((x,y))[1] 
+                vert=image.getpixel((x,y))[2] 
+                m=(rouge+bleu+vert)//3 
+                image.putpixel((x,y),(m,m,m))
+    image.show()
