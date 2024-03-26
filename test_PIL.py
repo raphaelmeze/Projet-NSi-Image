@@ -48,8 +48,46 @@ def mosaique(image):
         mosaique+=[img2.crop(((i//4)*(largeur//4),(i%4)*(longueur//4),(i//4)*(largeur//4)+(largeur//4),(i%4)*(longueur//4)+(longueur//4)))]
     shuffle(mosaique)
     for i in range(16):
-        img2.paste(mosaique[i],((i//4)*(largeur//4),(i%4)*(longueur//4),(i//4)*(largeur//4)+(largeur//4),(i%4)*(longueur//4)+(longueur//4)))
-    return img2
+        image.paste(mosaique[i],((i//4)*(largeur//4),(i%4)*(longueur//4),(i//4)*(largeur//4)+(largeur//4),(i%4)*(longueur//4)+(longueur//4)))
+    image.show()
+
+def noir_et_blanc(image,seuil):
+    image_nb=image.copy()
+    for x in range (image_nb.width):
+        for y in range(image_nb.height):
+            rouge=image_nb.getpixel((x,y))[0]
+            bleu=image_nb.getpixel((x,y))[1] 
+            vert=image_nb.getpixel((x,y))[2] 
+            moyenne=(rouge+bleu+vert)//3
+            if moyenne > seuil:
+                image_nb.putpixel((x,y),(255,255,255))
+            else:
+                image_nb.putpixel((x,y),(0,0,0))
+    image_nb.show()
+
+def negatif(image):
+    """negatif
+    
+
+    Parameters
+    ----------
+    image : list
+        image
+
+    Returns
+    -------
+    None.
+"""
+    for x in range (image.width): 
+    #ça regarde la largeur de l'image
+        for y in range (image.height): 
+        #ça regarde la longueur de l'image
+            r, v, b=image.getpixel((x,y))
+            #ça prend toutes les couleurs de tous les pixels de l'image
+            image.putpixel((x,y),(255-r,255-v,255-b)) 
+            #ça remplace les pixels par leur pixels négatifs en rajoutant 255 à chaque couleur de chaque pixel
+    image.show() 
+    #ça montre l'image modifiée
 
 def premier_plan (image,):
     img2=image.copy()
