@@ -1,6 +1,7 @@
 from PIL import Image
 from random import shuffle
 
+
 def menu():
     print ("Bienvenue dans le menu du traitement d'images.")
     img=input("Quelle image voulez-vous modifiez ? L'image ")
@@ -11,6 +12,41 @@ def menu():
            "4.mosaique" "\n"
            "5.Quitter")
     reponse_utilisateur=input()
+    while reponse_utilisateur!="5":
+        if reponse_utilisateur=="1":
+            seuil=int(input("Choisissez un seuil : "))
+            noir_et_blanc(image, seuil)
+            print ("Veuillez entrer un chiffre" "\n"
+                    "1.noir_et_blanc" "\n"
+                   "2.contours" "\n" "3.premier_plan" "\n"
+                   "4.mosaique" "\n"
+                   "5.Quitter")
+        if reponse_utilisateur=="2":
+            seuil=int(input("Choisissez un seuil : "))
+            contours(image,seuil)
+            print ("Veuillez entrer un chiffre" "\n"
+                    "1.noir_et_blanc" "\n"
+                   "2.contours" "\n" "3.premier_plan" "\n"
+                   "4.mosaique" "\n"
+                   "5.Quitter")
+        if reponse_utilisateur=="3":
+            premier_plan (image)
+            print ("Veuillez entrer un chiffre" "\n"
+                    "1.noir_et_blanc" "\n"
+                   "2.contours" "\n" "3.premier_plan" "\n"
+                   "4.mosaique" "\n"
+                   "5.Quitter")
+        if reponse_utilisateur=="4":
+            mosaique(image)
+            print ("Veuillez entrer un chiffre" "\n"
+                    "1.noir_et_blanc" "\n"
+                   "2.contours" "\n" "3.premier_plan" "\n"
+                   "4.mosaique" "\n"
+                   "5.Quitter")
+        if reponse_utilisateur=="5":
+              #on affiche au revoir et on sort du programme menu
+            print("Au revoir !")
+    
 
     while reponse_utilisateur!="5":
         if reponse_utilisateur=="1":
