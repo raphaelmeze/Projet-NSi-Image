@@ -56,7 +56,9 @@ def mosaique(image):
     mosaique=[]
     #ça définit la variable mosaique à un tableau vide
     img2=image.copy()
+    #ça copie l'image dans une variable img2
     largeur, longueur = image.width, image.height
+    #ça définit la variable largeur à la largeur de l'image et la variable longueur à la longueur de l'image
     for i in range (16):
         mosaique+=[img2.crop(((i//4)*(largeur//4),(i%4)*(longueur//4),(i//4)*(largeur//4)+(largeur//4),(i%4)*(longueur//4)+(longueur//4)))]
     shuffle(mosaique)
