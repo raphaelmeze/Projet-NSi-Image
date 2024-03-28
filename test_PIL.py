@@ -41,7 +41,20 @@ def contours(image,seuil):
     return img2
 
 def mosaique(image):
+    """mosaique
+    
+
+    Parameters
+    ----------
+    image : list
+        image
+
+    Returns
+    -------
+    None.
+"""
     mosaique=[]
+    #ça définit la variable mosaique à un tableau vide
     img2=image.copy()
     largeur, longueur = image.width, image.height
     for i in range (16):
