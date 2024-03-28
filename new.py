@@ -48,17 +48,7 @@ def menu():
             print("Au revoir !")
     
 
-    while reponse_utilisateur!="5":
-        if reponse_utilisateur=="1":
-            seuil=int(input("Choisissez un seuil : "))
-            noir_et_blanc(image, seuil)
-        if reponse_utilisateur=="2":
-            seuil=int(input("Choisissez un seuil : "))
-            contours(image,seuil)
-        if reponse_utilisateur=="3":
-            premier_plan (image)
-        if reponse_utilisateur=="4":
-            mosaique(image)
+
     
 def noir_et_blanc(image,seuil):
     image_nb=image.copy()
