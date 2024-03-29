@@ -17,9 +17,7 @@ def menu():
         if reponse_utilisateur=="1":
             seuil=int(input("Choisissez un seuil : "))
             image_noir_et_blanc=noir_et_blanc(image, seuil)
-            choix=input("Voulez vous affichez la photo ")
-            if choix=='oui':
-                image_noir_et_blanc.show()
+            image_noir_et_blanc.show()
             print ("Veuillez entrer un chiffre" "\n"
                     "1.noir_et_blanc" "\n"
                    "2.contours" "\n" "3.premier_plan" "\n"
@@ -30,9 +28,7 @@ def menu():
         if reponse_utilisateur=="2":
             seuil=int(input("Choisissez un seuil : "))
             image_contours=contours(image,seuil)
-            choix=input("Voulez vous affichez la photo ")
-            if choix=='oui':
-                image_contours.show()
+            image_contours.show()
             print ("Veuillez entrer un chiffre" "\n"
                     "1.noir_et_blanc" "\n"
                    "2.contours" "\n" "3.premier_plan" "\n"
@@ -42,9 +38,7 @@ def menu():
             reponse_utilisateur=input()
         if reponse_utilisateur=="3":
             image_premier_plan=premier_plan (image)
-            choix=input("Voulez vous affichez la photo ")
-            if choix=='oui':
-                image_premier_plan.show()
+            image_premier_plan.show()
             print ("Veuillez entrer un chiffre" "\n"
                     "1.noir_et_blanc" "\n"
                    "2.contours" "\n" "3.premier_plan" "\n"
@@ -54,9 +48,7 @@ def menu():
             reponse_utilisateur=input()
         if reponse_utilisateur=="4":
             image_mosaique=mosaique(image)
-            choix=input("Voulez vous affichez la photo ")
-            if choix=='oui':
-                image_mosaique.show()
+            image_mosaique.show()
             print ("Veuillez entrer un chiffre" "\n"
                     "1.noir_et_blanc" "\n"
                    "2.contours" "\n" "3.premier_plan" "\n"
@@ -66,9 +58,7 @@ def menu():
             reponse_utilisateur=input()
         if reponse_utilisateur=="5":
             image_negatif=negatif(image)
-            choix=input("Voulez vous affichez la photo ")
-            if choix=='oui':
-                image_negatif.show()
+            image_negatif.show()
             print ("Veuillez entrer un chiffre" "\n"
                     "1.noir_et_blanc" "\n"
                    "2.contours" "\n" "3.premier_plan" "\n"
