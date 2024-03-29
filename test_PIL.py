@@ -7,15 +7,36 @@ from random import shuffle
 image = Image.open('poisson.jpg')
 
 def niveaux_de_gris(image): 
+    """niveaux_de_gris
+    
+
+    Parameters
+    ----------
+    image : list
+        image
+
+    Returns
+    -------
+    None.
+"""
     img2=image.copy()
+    #ça copie l'image dans une variable img2
     for x in range (img2.width): 
+    #ça regarde la largeur de l'image
         for y in range (img2.height): 
+        #ça regarde la longueur de l'image
             rouge=img2.getpixel((x,y))[0] 
+            #ça prend la valeur de la couleur rouge de chaque pixel et la met dans la variable rouge
             bleu=img2.getpixel((x,y))[1] 
+            #ça prend la valeur de la couleur bleue de chaque pixel et la met dans la variable bleu
             vert=img2.getpixel((x,y))[2] 
+            #ça prend la valeur de la couleur verte de chaque pixel et la met dans la variable vert
             m=(rouge+bleu+vert)//3 
+            #ça fait la moyenne de toutes les couleurs de chaque pixel
             img2.putpixel((x,y),(m,m,m)) 
+            #ça remplace les valeurs des couleurs des pixels par les valeurs des couleurs de la moyenne des pixels
     return img2 
+    #ça montre l'image modifiée
 
 def contours(image,seuil):
     img2=image.copy()
