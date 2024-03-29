@@ -80,7 +80,7 @@ def noir_et_blanc(image,seuil):
 
     Returns
     -------
-    image_nb
+    image_nb : list
 """
     #on copie l'image dans une variable image_nb
     image_nb=image.copy()
@@ -118,19 +118,20 @@ def negatif(image):
 
     Returns
     -------
-    None.
+    img2 : list
 """
+    #on copie l'image dans une variable image_nb
     img2=image.copy()
+    #on regarde la largeur de l'image
     for x in range (img2.width): 
-    #ça regarde la largeur de l'image
+        #on regarde la longueur de l'image
         for y in range (img2.height): 
-        #ça regarde la longueur de l'image
+            #on prend toutes les couleurs de tous les pixels de l'image
             r, v, b=img2.getpixel((x,y))
-            #ça prend toutes les couleurs de tous les pixels de l'image
+            #on remplace les pixels par leur pixels négatifs en rajoutant 255 à chaque couleur de chaque pixel
             img2.putpixel((x,y),(255-r,255-v,255-b)) 
-            #ça remplace les pixels par leur pixels négatifs en rajoutant 255 à chaque couleur de chaque pixel
+    #on retourne l'image modifiée 
     return img2
-    #ça retourne l'image modifiée 
     
 def niveaux_de_gris(image): 
     """niveaux_de_gris
@@ -143,27 +144,27 @@ def niveaux_de_gris(image):
 
     Returns
     -------
-    None.
+    img2 : list
 """
+    #on copie l'image dans une variable img2
     img2=image.copy()
-    #ça copie l'image dans une variable img2
+    #on regarde la largeur de l'image
     for x in range (img2.width): 
-    #ça regarde la largeur de l'image
+        #on regarde la longueur de l'image
         for y in range (img2.height): 
-        #ça regarde la longueur de l'image
+            #on prend la valeur de la couleur rouge de chaque pixel et la met dans la variable rouge
             rouge=img2.getpixel((x,y))[0] 
-            #ça prend la valeur de la couleur rouge de chaque pixel et la met dans la variable rouge
+            #on prend la valeur de la couleur bleue de chaque pixel et la met dans la variable bleu
             bleu=img2.getpixel((x,y))[1] 
-            #ça prend la valeur de la couleur bleue de chaque pixel et la met dans la variable bleu
+            #on prend la valeur de la couleur verte de chaque pixel et la met dans la variable vert
             vert=img2.getpixel((x,y))[2] 
-            #ça prend la valeur de la couleur verte de chaque pixel et la met dans la variable vert
+            #on fait la moyenne de toutes les couleurs de chaque pixel
             m=(rouge+bleu+vert)//3 
-            #ça fait la moyenne de toutes les couleurs de chaque pixel
+            #on remplace les valeurs des couleurs des pixels par les valeurs des couleurs de la moyenne des pixels
             img2.putpixel((x,y),(m,m,m)) 
-            #ça remplace les valeurs des couleurs des pixels par les valeurs des couleurs de la moyenne des pixels
+    #on montre l'image modifiée
     return img2 
-    #ça montre l'image modifiée
-
+    
 def contours(image,seuil):
     img2=image.copy()
     niveaux_de_gris(img2)
@@ -215,45 +216,23 @@ def mosaique(image):
     #ça mélange tous les morceaux de l'image de façon aléatoire
     for i in range(16):
     #ça répète ce qu'il y a dans la boucle 16 fois
-        img2.paste(mosaique[i],((i//4)*(largeur//4),(i%4)*(longueur//4),(i//4)*(largeur//4)+(largeur//4),(i%4)*(longueur//4)+(longueur//4)))
+        image.paste(mosaique[i],((i//4)*(largeur//4),(i%4)*(longueur//4),(i//4)*(largeur//4)+(largeur//4),(i%4)*(longueur//4)+(longueur//4)))
         #ça modifie l'image avec les bouts d'image qui ont été mélangés et les colle dans dans l'image
-    return img2
+    image.show()
     #ça montre l'image modifiée
 
 def premier_plan (image):
-    """
-    Cette fonction garde seulement la couleur qu'on demande
-    Parametres:
-    image:list
-        image
-    Returns
-    l'image modifiée
-    """
-    # on fait une copie de l'image
     img2=image.copy()
-    # on demande la valeur de rouge qu'on veut garder
     r=int(input("Quelle valeur de rouge voulez-vous gardez ?"))
-    # on demande la valeur de bleu qu'on veut garder
     b=int(input("Quelle valeur de bleu voulez-vous gardez ?"))
-    # on demande la valeur de vert qu'on veut garder
     v=int(input("Quelle valeur de vert voulez-vous gardez ?"))
-    # on demande la tolérance autour de la valeur donnée
     tolerance=int(input("Quelle tolérance acceptez-vous autour de cette couleur ?"))
-    # on parcourt la largeur de l'image
     for x in range (img2.width): 
-        # on parcourt la longueur de l'image
-        for y in range (img2.height):
-            # on prend la valeur rouge du pixel
+        for y in range (img2.height): 
             rouge=img2.getpixel((x,y))[0] 
-            # on prend la valeur vert du pixel
             vert=img2.getpixel((x,y))[1]
-            # on prend la valeur bleu du pixel
             bleu=img2.getpixel((x,y))[2]
-            # on regarde si la couleur du pixel correspond aux valeur demandées
             if not((rouge>r-tolerance and rouge<r+tolerance)and(bleu>b-tolerance and bleu<b+tolerance)and(vert>v-tolerance and vert<v+tolerance)):
-                # si ce n'est pas le cas on fait la moyenne des couleurs
                 m=(rouge+bleu+vert)//3
-                # on met cette couleur dans le pixel
                 img2.putpixel((x,y),(m,m,m))
-    # on retourne l'image modifiée
     return img2
