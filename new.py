@@ -3,72 +3,113 @@ from random import shuffle
 
 
 def menu():
+    """menu
+    Cete fonction permet de faciliter à l'utilsateur l'exécution des fonctions
+    en affichant un menu
+
+    Returns
+    -------
+    None.
+
+    """
+    #on affiche un message de bienvenue
     print ("Bienvenue dans le menu du traitement d'images.")
+    #on demande à l'utilisateur de choisir une image
     img=input("Quelle image voulez-vous modifiez ? L'image ")
+    #on affecte l'image choisie par l'utilisateur à une variable
     image=Image.open(img)
+    #on affiche le menu
     print ("Veuillez entrer un chiffre" "\n"
             "1.noir_et_blanc" "\n"
            "2.contours" "\n" "3.premier_plan" "\n"
            "4.mosaique" "\n"
            "5.négatif" "\n"
            "6.Quitter")
+    #on affecte la reponse de l'utilisateur à une variable
     reponse_utilisateur=input()
+    #on effectue la fonction tant que la reponse de lu'tilisateur est différente de 6
     while reponse_utilisateur!="6":
+        #on effectue la fonction si l'utilisateur repond 1
         if reponse_utilisateur=="1":
+            #on affecte la reponse de l'utilisateur à une variable seuil
             seuil=int(input("Choisissez un seuil : "))
+            #on affecte l'image à une nouvelle variable
             image_noir_et_blanc=noir_et_blanc(image, seuil)
+            #on affiche l'image
             image_noir_et_blanc.show()
+            #on affiche le menu
             print ("Veuillez entrer un chiffre" "\n"
                     "1.noir_et_blanc" "\n"
                    "2.contours" "\n" "3.premier_plan" "\n"
                    "4.mosaique" "\n"
                    "5.négatif" "\n"
                    "6.Quitter")
+            #on affecte la reponse de l'utilisateur à une variable
             reponse_utilisateur=input()
+        #on effectue la fonction si l'utilisateur repond 2
         if reponse_utilisateur=="2":
+            #on affecte la reponse de l'utilisateur à une variable seuil
             seuil=int(input("Choisissez un seuil : "))
+            #on affecte l'image à une nouvelle variable
             image_contours=contours(image,seuil)
+            #on affiche l'image
             image_contours.show()
+            #on affiche le menu
             print ("Veuillez entrer un chiffre" "\n"
                     "1.noir_et_blanc" "\n"
                    "2.contours" "\n" "3.premier_plan" "\n"
                    "4.mosaique" "\n"
                    "5.négatif" "\n"
                    "6.Quitter")
+            #on affecte la reponse de l'utilisateur à une variable
             reponse_utilisateur=input()
+        #on effectue la fonction si l'utilisateur repond 3
         if reponse_utilisateur=="3":
+            #on affecte l'image à une nouvelle variable
             image_premier_plan=premier_plan (image)
+            #on affiche l'image
             image_premier_plan.show()
+            #on affiche le menu
             print ("Veuillez entrer un chiffre" "\n"
                     "1.noir_et_blanc" "\n"
                    "2.contours" "\n" "3.premier_plan" "\n"
                    "4.mosaique" "\n"
                    "5.négatif" "\n"
                    "6.Quitter")
+            #on affecte la reponse de l'utilisateur à une variable
             reponse_utilisateur=input()
+        #on effectue la fonction si l'utilisateur repond 4
         if reponse_utilisateur=="4":
+            #on affecte l'image à une nouvelle variable
             image_mosaique=mosaique(image)
+            #on affiche l'image
             image_mosaique.show()
+            #on affiche le menu
             print ("Veuillez entrer un chiffre" "\n"
                     "1.noir_et_blanc" "\n"
                    "2.contours" "\n" "3.premier_plan" "\n"
                    "4.mosaique" "\n"
                    "5.négatif" "\n"
                    "6.Quitter")
+            #on affecte la reponse de l'utilisateur à une variable
             reponse_utilisateur=input()
+         #on effectue la fonction si l'utilisateur repond 5
         if reponse_utilisateur=="5":
+            #on affecte l'image à une nouvelle variable
             image_negatif=negatif(image)
+            #on affiche l'image
             image_negatif.show()
+            #on affiche le menu
             print ("Veuillez entrer un chiffre" "\n"
                     "1.noir_et_blanc" "\n"
                    "2.contours" "\n" "3.premier_plan" "\n"
                    "4.mosaique" "\n"
                    "5.négatif" "\n"
                    "6.Quitter")
+            #on affecte la reponse de l'utilisateur à une variable
             reponse_utilisateur=input()
     #on affiche au revoir et on sort du programme menu
     print("Au revoir !")
-    
 def noir_et_blanc(image,seuil):
     """noir_et_blanc
     
