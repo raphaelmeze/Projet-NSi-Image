@@ -177,51 +177,50 @@ def contours(image,seuil):
 
     Returns
     -------
-    None.
+    img2 : list
 """
+    #on copie l'image dans une variable img2
     img2=image.copy()
-    #ça copie l'image dans une variable img2
+    #on effectue la fonction niveaux_de_gris
     niveaux_de_gris(img2)
-    #ça effectue la fonction niveaux_de_gris
+    #on regarde la largeur de l'image en y soustrayant 1
     for x in range (img2.width-1): 
-    #ça regarde la largeur de l'image en y soustrayant 1
+        #on regarde la longueur de l'image en y soustrayant 1
         for y in range (img2.height): 
-        #ça regarde la longueur de l'image en y soustrayant 1
+            #on demande si on est à la bordure gauche de l'image
             if x==0: 
-            #ça demande si on est à la bordure gauche de l'image
-                couleur1=img2.getpixel((x,y))[0] 
-                #ça prend la valeur des couleurs de chaque pixel et la met dans la variable couleur1
-                couleur2=img2.getpixel((x+1,y))[0] 
-                #ça prend la valeur des couleurs de chaque pixel et la met dans la variable couleur2
+                #on prend la valeur des couleurs de chaque pixel et la met dans la variable couleur1
+                couleur1=img2.getpixel((x,y))[0]  
+                #on prend la valeur des couleurs de chaque pixel et la met dans la variable couleur2
+                couleur2=img2.getpixel((x+1,y))[0]
+                #on fait la différence en valeur absolue
                 difference=abs(couleur1-couleur2)
-                #ça fait la différence en valeur absolue
+                #on regarde si la différence obtenue est supérieur au seuil donné au début
                 if difference>seuil: 
-                #ça regarde si la différence obtenue est supérieur au seuil donné au début
+                    #on remplace les valeurs des couleurs des pixels par les valeurs des couleurs des pixels du blanc
                     img2.putpixel((x,y),(255,255,255)) 
-                    #ça remplace les valeurs des couleurs des pixels par les valeurs des couleurs des pixels du blanc
-                else: 
                 #sinon si le seuil est supérieur à la diférence
+                else: 
+                    #on remplace les valeurs des couleurs des pixels par les valeurs des couleurs des pixels du noir
                     img2.putpixel((x,y),(0,0,0))
-                    #ça remplace les valeurs des couleurs des pixels par les valeurs des couleurs des pixels du noir
-            else: 
             #sinon si on n'est pas à la bordure de l'image
+            else: 
+                #on prend la valeur des couleurs de chaque pixel et la met dans la variable couleur1
                 couleur1=image.getpixel((x,y))[0] 
-                #ça prend la valeur des couleurs de chaque pixel et la met dans la variable couleur1
+                #on prend la valeur des couleurs de chaque pixel et la met dans la variable couleur2
                 couleur2=image.getpixel((x+1,y))[0] 
-                #ça prend la valeur des couleurs de chaque pixel et la met dans la variable couleur2
-                difference=abs(couleur1-couleur2)
-                #ça fait la différence en valeur absolue
-                if difference>seuil: 
-                #ça regarde si la différence obtenue est supérieur au seuil donné au début
-                    img2.putpixel((x,y),(255,255,255)) 
-                    #ça remplace les valeurs des couleurs des pixels par les valeurs des couleurs des pixels du blanc
-                else: 
+                #on fait la différence en valeur absolue
+                difference=abs(couleur1-couleur2) 
+                #on regarde si la différence obtenue est supérieur au seuil donné au début
+                if difference>seuil:
+                    #on remplace les valeurs des couleurs des pixels par les valeurs des couleurs des pixels du blanc
+                    img2.putpixel((x,y),(255,255,255))  
                 #sinon si le seuil est supérieur à la diférence
+                else:
+                    #on remplace les valeurs des couleurs des pixels par les valeurs des couleurs des pixels du noir
                     img2.putpixel((x,y),(0,0,0)) 
-                    #ça remplace les valeurs des couleurs des pixels par les valeurs des couleurs des pixels du noir
+    #on montre l'image modifiée
     return img2
-    #ça montre l'image modifiée
-
 
 
 def mosaique(image):
