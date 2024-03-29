@@ -215,9 +215,9 @@ def mosaique(image):
     #ça mélange tous les morceaux de l'image de façon aléatoire
     for i in range(16):
     #ça répète ce qu'il y a dans la boucle 16 fois
-        image.paste(mosaique[i],((i//4)*(largeur//4),(i%4)*(longueur//4),(i//4)*(largeur//4)+(largeur//4),(i%4)*(longueur//4)+(longueur//4)))
+        img2.paste(mosaique[i],((i//4)*(largeur//4),(i%4)*(longueur//4),(i//4)*(largeur//4)+(largeur//4),(i%4)*(longueur//4)+(longueur//4)))
         #ça modifie l'image avec les bouts d'image qui ont été mélangés et les colle dans dans l'image
-    image.show()
+    return img2
     #ça montre l'image modifiée
 
 def premier_plan (image):
@@ -255,5 +255,5 @@ def premier_plan (image):
                 m=(rouge+bleu+vert)//3
                 # on met cette couleur dans le pixel
                 img2.putpixel((x,y),(m,m,m))
-    on retourne l'image modifiée
+    # on retourne l'image modifiée
     return img2
