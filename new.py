@@ -166,27 +166,62 @@ def niveaux_de_gris(image):
     return img2 
     
 def contours(image,seuil):
+    """contours
+    
+
+    Parameters
+    ----------
+    image : list
+        image
+    seuil : int
+
+    Returns
+    -------
+    None.
+"""
     img2=image.copy()
+    #ça copie l'image dans une variable img2
     niveaux_de_gris(img2)
+    #ça effectue la fonction niveaux_de_gris
     for x in range (img2.width-1): 
+    #ça regarde la largeur de l'image en y soustrayant 1
         for y in range (img2.height): 
+        #ça regarde la longueur de l'image en y soustrayant 1
             if x==0: 
+            #ça demande si on est à la bordure gauche de l'image
                 couleur1=img2.getpixel((x,y))[0] 
+                #ça prend la valeur des couleurs de chaque pixel et la met dans la variable couleur1
                 couleur2=img2.getpixel((x+1,y))[0] 
+                #ça prend la valeur des couleurs de chaque pixel et la met dans la variable couleur2
                 difference=abs(couleur1-couleur2)
+                #ça fait la différence en valeur absolue
                 if difference>seuil: 
+                #ça regarde si la différence obtenue est supérieur au seuil donné au début
                     img2.putpixel((x,y),(255,255,255)) 
+                    #ça remplace les valeurs des couleurs des pixels par les valeurs des couleurs des pixels du blanc
                 else: 
+                #sinon si le seuil est supérieur à la diférence
                     img2.putpixel((x,y),(0,0,0))
+                    #ça remplace les valeurs des couleurs des pixels par les valeurs des couleurs des pixels du noir
             else: 
+            #sinon si on n'est pas à la bordure de l'image
                 couleur1=image.getpixel((x,y))[0] 
+                #ça prend la valeur des couleurs de chaque pixel et la met dans la variable couleur1
                 couleur2=image.getpixel((x+1,y))[0] 
+                #ça prend la valeur des couleurs de chaque pixel et la met dans la variable couleur2
                 difference=abs(couleur1-couleur2)
+                #ça fait la différence en valeur absolue
                 if difference>seuil: 
+                #ça regarde si la différence obtenue est supérieur au seuil donné au début
                     img2.putpixel((x,y),(255,255,255)) 
+                    #ça remplace les valeurs des couleurs des pixels par les valeurs des couleurs des pixels du blanc
                 else: 
+                #sinon si le seuil est supérieur à la diférence
                     img2.putpixel((x,y),(0,0,0)) 
+                    #ça remplace les valeurs des couleurs des pixels par les valeurs des couleurs des pixels du noir
     return img2
+    #ça montre l'image modifiée
+
 
 
 def mosaique(image):
