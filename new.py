@@ -221,17 +221,39 @@ def mosaique(image):
     #ça montre l'image modifiée
 
 def premier_plan (image):
+    """
+    Cette fonction garde seulement la couleur qu'on demande
+    Parametres:
+    image:list
+        image
+    Returns
+    l'image modifiée
+    """
+    # on fait une copie de l'image
     img2=image.copy()
+    # on demande la valeur de rouge qu'on veut garder
     r=int(input("Quelle valeur de rouge voulez-vous gardez ?"))
+    # on demande la valeur de bleu qu'on veut garder
     b=int(input("Quelle valeur de bleu voulez-vous gardez ?"))
+    # on demande la valeur de vert qu'on veut garder
     v=int(input("Quelle valeur de vert voulez-vous gardez ?"))
+    # on demande la tolérance autour de la valeur donnée
     tolerance=int(input("Quelle tolérance acceptez-vous autour de cette couleur ?"))
+    # on parcourt la largeur de l'image
     for x in range (img2.width): 
-        for y in range (img2.height): 
+        # on parcourt la longueur de l'image
+        for y in range (img2.height):
+            # on prend la valeur rouge du pixel
             rouge=img2.getpixel((x,y))[0] 
+            # on prend la valeur vert du pixel
             vert=img2.getpixel((x,y))[1]
+            # on prend la valeur bleu du pixel
             bleu=img2.getpixel((x,y))[2]
+            # on regarde si la couleur du pixel correspond aux valeur demandées
             if not((rouge>r-tolerance and rouge<r+tolerance)and(bleu>b-tolerance and bleu<b+tolerance)and(vert>v-tolerance and vert<v+tolerance)):
+                # si ce n'est pas le cas on fait la moyenne des couleurs
                 m=(rouge+bleu+vert)//3
+                # on met cette couleur dans le pixel
                 img2.putpixel((x,y),(m,m,m))
+    on retourne l'image modifiée
     return img2
