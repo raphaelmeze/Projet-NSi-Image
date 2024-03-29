@@ -278,23 +278,23 @@ def mosaique(image):
     None.
 """
     mosaique=[]
-    #ça définit la variable mosaique à un tableau vide
+    #on définit la variable mosaique à un tableau vide
     img2=image.copy()
-    #ça copie l'image dans une variable img2
+    #on copie l'image dans une variable img2
     largeur, longueur = image.width, image.height
-    #ça définit la variable largeur à la largeur de l'image et la variable longueur à la longueur de l'image
+    #on définit la variable largeur à la largeur de l'image et la variable longueur à la longueur de l'image
     for i in range (16):
-    #ça répète ce qu'il y a dans la boucle 16 fois
+    #on répète ce qu'il y a dans la boucle 16 fois
         mosaique+=[img2.crop(((i//4)*(largeur//4),(i%4)*(longueur//4),(i//4)*(largeur//4)+(largeur//4),(i%4)*(longueur//4)+(longueur//4)))]
-        #ça divise l'image en plusieurs morceaux et on met tous les morceaux 
+        #on divise l'image en plusieurs morceaux et on met tous les morceaux 
     shuffle(mosaique)
-    #ça mélange tous les morceaux de l'image de façon aléatoire
+    #on mélange tous les morceaux de l'image de façon aléatoire
     for i in range(16):
-    #ça répète ce qu'il y a dans la boucle 16 fois
+    #on répète ce qu'il y a dans la boucle 16 fois
         image.paste(mosaique[i],((i//4)*(largeur//4),(i%4)*(longueur//4),(i//4)*(largeur//4)+(largeur//4),(i%4)*(longueur//4)+(longueur//4)))
-        #ça modifie l'image avec les bouts d'image qui ont été mélangés et les colle dans dans l'image
+        #on modifie l'image avec les bouts d'image qui ont été mélangés et les colle dans dans l'image
     image.show()
-    #ça montre l'image modifiée
+    #on montre l'image modifiée
 
 def premier_plan (image):
     img2=image.copy()
