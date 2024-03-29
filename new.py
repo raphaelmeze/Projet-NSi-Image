@@ -131,3 +131,28 @@ def premier_plan (image):
                 m=(rouge+bleu+vert)//3
                 img2.putpixel((x,y),(m,m,m))
     return img2
+
+def negatif(image):
+    """negatif
+    
+
+    Parameters
+    ----------
+    image : list
+        image
+
+    Returns
+    -------
+    None.
+"""
+    img2=image.copy()
+    for x in range (img2.width): 
+    #ça regarde la largeur de l'image
+        for y in range (img2.height): 
+        #ça regarde la longueur de l'image
+            r, v, b=img2.getpixel((x,y))
+            #ça prend toutes les couleurs de tous les pixels de l'image
+            img2.putpixel((x,y),(255-r,255-v,255-b)) 
+            #ça remplace les pixels par leur pixels négatifs en rajoutant 255 à chaque couleur de chaque pixel
+    return img2
+    #ça retourne l'image modifiée
