@@ -10,49 +10,74 @@ def menu():
             "1.noir_et_blanc" "\n"
            "2.contours" "\n" "3.premier_plan" "\n"
            "4.mosaique" "\n"
-           "5.Quitter")
+           "5.négatif" "\n"
+           "6.Quitter")
     reponse_utilisateur=input()
-    while reponse_utilisateur!="5":
+    while reponse_utilisateur!="6":
         if reponse_utilisateur=="1":
             seuil=int(input("Choisissez un seuil : "))
-            noir_et_blanc(image, seuil)
+            image_noir_et_blanc=noir_et_blanc(image, seuil)
+            choix=input("Voulez vous affichez la photo ")
+            if choix=='oui':
+                image_noir_et_blanc.show()
             print ("Veuillez entrer un chiffre" "\n"
                     "1.noir_et_blanc" "\n"
                    "2.contours" "\n" "3.premier_plan" "\n"
                    "4.mosaique" "\n"
-                   "5.Quitter")
+                   "5.négatif" "\n"
+                   "6.Quitter")
             reponse_utilisateur=input()
         if reponse_utilisateur=="2":
             seuil=int(input("Choisissez un seuil : "))
-            contours(image,seuil)
+            image_contours=contours(image,seuil)
+            choix=input("Voulez vous affichez la photo ")
+            if choix=='oui':
+                image_contours.show()
             print ("Veuillez entrer un chiffre" "\n"
                     "1.noir_et_blanc" "\n"
                    "2.contours" "\n" "3.premier_plan" "\n"
                    "4.mosaique" "\n"
-                   "5.Quitter")
+                   "5.négatif" "\n"
+                   "6.Quitter")
             reponse_utilisateur=input()
         if reponse_utilisateur=="3":
-            premier_plan (image)
+            image_premier_plan=premier_plan (image)
+            choix=input("Voulez vous affichez la photo ")
+            if choix=='oui':
+                image_premier_plan.show()
             print ("Veuillez entrer un chiffre" "\n"
                     "1.noir_et_blanc" "\n"
                    "2.contours" "\n" "3.premier_plan" "\n"
                    "4.mosaique" "\n"
-                   "5.Quitter")
+                   "5.négatif" "\n"
+                   "6.Quitter")
             reponse_utilisateur=input()
         if reponse_utilisateur=="4":
-            mosaique(image)
+            image_mosaique=mosaique(image)
+            choix=input("Voulez vous affichez la photo ")
+            if choix=='oui':
+                image_mosaique.show()
             print ("Veuillez entrer un chiffre" "\n"
                     "1.noir_et_blanc" "\n"
                    "2.contours" "\n" "3.premier_plan" "\n"
                    "4.mosaique" "\n"
-                   "5.Quitter")
+                   "5.négatif" "\n"
+                   "6.Quitter")
             reponse_utilisateur=input()
         if reponse_utilisateur=="5":
-              #on affiche au revoir et on sort du programme menu
-            print("Au revoir !")
-    
-
-
+            image_negatif=negatif(image)
+            choix=input("Voulez vous affichez la photo ")
+            if choix=='oui':
+                image_negatif.show()
+            print ("Veuillez entrer un chiffre" "\n"
+                    "1.noir_et_blanc" "\n"
+                   "2.contours" "\n" "3.premier_plan" "\n"
+                   "4.mosaique" "\n"
+                   "5.négatif" "\n"
+                   "6.Quitter")
+            reponse_utilisateur=input()
+    #on affiche au revoir et on sort du programme menu
+    print("Au revoir !")
     
 def noir_et_blanc(image,seuil):
     image_nb=image.copy()
@@ -66,9 +91,32 @@ def noir_et_blanc(image,seuil):
                 image_nb.putpixel((x,y),(255,255,255))
             else:
                 image_nb.putpixel((x,y),(0,0,0))
-    image_nb.show()
+    return image_nb
     
+def negatif(image):
+    """negatif
     
+
+    Parameters
+    ----------
+    image : list
+        image
+
+    Returns
+    -------
+    None.
+"""
+    img2=image.copy()
+    for x in range (img2.width): 
+    #ça regarde la largeur de l'image
+        for y in range (img2.height): 
+        #ça regarde la longueur de l'image
+            r, v, b=img2.getpixel((x,y))
+            #ça prend toutes les couleurs de tous les pixels de l'image
+            img2.putpixel((x,y),(255-r,255-v,255-b)) 
+            #ça remplace les pixels par leur pixels négatifs en rajoutant 255 à chaque couleur de chaque pixel
+    return img2
+    #ça retourne l'image modifiée 
     
 def niveaux_de_gris(image): 
     img2=image.copy()
@@ -131,28 +179,3 @@ def premier_plan (image):
                 m=(rouge+bleu+vert)//3
                 img2.putpixel((x,y),(m,m,m))
     return img2
-
-def negatif(image):
-    """negatif
-    
-
-    Parameters
-    ----------
-    image : list
-        image
-
-    Returns
-    -------
-    None.
-"""
-    img2=image.copy()
-    for x in range (img2.width): 
-    #ça regarde la largeur de l'image
-        for y in range (img2.height): 
-        #ça regarde la longueur de l'image
-            r, v, b=img2.getpixel((x,y))
-            #ça prend toutes les couleurs de tous les pixels de l'image
-            img2.putpixel((x,y),(255-r,255-v,255-b)) 
-            #ça remplace les pixels par leur pixels négatifs en rajoutant 255 à chaque couleur de chaque pixel
-    return img2
-    #ça retourne l'image modifiée
