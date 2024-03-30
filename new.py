@@ -296,7 +296,7 @@ def mosaique(image):
          #on modifie l'image avec les bouts d'image qui ont été mélangés et les colle dans dans l'image
         image.paste(mosaique[i],((i//4)*(largeur//4),(i%4)*(longueur//4),(i//4)*(largeur//4)+(largeur//4),(i%4)*(longueur//4)+(longueur//4)))
     #on montre l'image modifiée  
-    image.show()
+    return image
 
 
 def premier_plan (image):
