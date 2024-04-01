@@ -124,21 +124,17 @@ def noir_et_blanc(image,seuil):
     Returns
     -------
     image_nb : list
-"""
+    """
     #on copie l'image dans une variable image_nb
     image_nb=image.copy()
     #on regarde la largeur de l'image
     for x in range (image_nb.width):
         #on regarde la longueur de l'image
         for y in range(image_nb.height):
-            #on prend la valeur de la couleur rouge de chaque pixel et la met dans la variable rouge
-            rouge=image_nb.getpixel((x,y))[0]
-            #on prend la valeur de la couleur bleue de chaque pixel et la met dans la variable bleu
-            bleu=image_nb.getpixel((x,y))[1] 
-            #on prend la valeur de la couleur verte de chaque pixel et la met dans la variable vert
-            vert=image_nb.getpixel((x,y))[2] 
+            #on récupère les valeurs du canal rouge (r), du canal vert (v) et du canal bleu (b) de chaque pixels
+            r,v,b=image_nb.getpixel((x,y))
             #on fait la moyenne de toutes les couleurs de chaque pixel
-            moyenne=(rouge+bleu+vert)//3 
+            moyenne=(r+b+v)//3 
             #si la moyenne de toutes les couleurs de chaque pixel est supérieure au seuil rentré au début
             if moyenne > seuil:
                 #on remplace les valeurs des couleurs des pixels par les valeurs des couleurs des pixels du blanc
